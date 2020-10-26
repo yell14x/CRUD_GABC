@@ -293,12 +293,11 @@ namespace CRUD.Controllers
                         return View();
                     }
                 }
-                ViewBag.Message = String.Format("Add Employee first");
                 return View();
 
 
             }
-            
+
         }
 
         // GET: Branch/Edit/5
@@ -318,23 +317,6 @@ namespace CRUD.Controllers
             daemp.Fill(dsemp);
             List<Branch> blist = new List<Branch>();
             List<SelectListItem> getemployees = null;
-            getemployees = new List<SelectListItem>();
-            string boolval = "";
-            for (int e = 0; e < dsemp.Tables[0].Rows.Count; e++)
-            {
-                SelectListItem bobj = new SelectListItem();
-                bobj.Value = Convert.ToString(dsemp.Tables[0].Rows[e]["id"]);
-                bobj.Text = Convert.ToString(dsemp.Tables[0].Rows[e]["EmployeeName"]);
-                getemployees.Add(bobj);
-
-            };
-
-
-
-            List<SelectListItem> mySkills = new List<SelectListItem>()
-            {
-            };
-            ViewBag.MySkills = getemployees;
             DataSet ds = null;
             List<Branch> elist = null;
 
@@ -354,6 +336,7 @@ namespace CRUD.Controllers
             string strDDLValue = "";
             strDDLValue = Request.Form["MySkills"];
 
+            string id_mngr = "";
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
             {
                 if (ds.Tables[0].Rows[i]["isActive"].ToString() == "1")
@@ -368,12 +351,41 @@ namespace CRUD.Controllers
                 eobj.br_city = ds.Tables[0].Rows[i]["br_city"].ToString();
                 eobj.br_brgy = ds.Tables[0].Rows[i]["br_brgy"].ToString();
                 eobj.permitno = ds.Tables[0].Rows[i]["br_permit"].ToString();
-                eobj.br_mngr = strDDLValue;// ds.Tables[0].Rows[i]["manager"].ToString();
+                eobj.br_mngr = ds.Tables[0].Rows[i]["br_mngr"].ToString();//strDDLValue;// 
+                id_mngr = ds.Tables[0].Rows[i]["br_mngr"].ToString();
                 eobj.DateOpened = Convert.ToDateTime(ds.Tables[0].Rows[i]["Date_Opened"].ToString());
+                eobj.br_mngrname = ds.Tables[0].Rows[i]["manager"].ToString();
                 eobj.isActive = Convert.ToBoolean(val);
+                //(new SelectListItem { Text = ds.Tables[0].Rows[i]["br_mngr"].ToString(), Value = ds.Tables[0].Rows[i]["br_mngr_name"].ToString(), Selected = (ds.Tables[0].Rows[i]["br_mngr"].ToString() == eobj.br_brgy) });
 
                 elist.Add(eobj);
+
             }
+
+            getemployees = new List<SelectListItem>();
+            string boolval = "";
+            for (int e = 0; e < dsemp.Tables[0].Rows.Count; e++)
+            {
+                SelectListItem bobj = new SelectListItem();
+
+                if (id_mngr == Convert.ToString(dsemp.Tables[0].Rows[e]["id"]))
+                {
+                    bobj.Selected = true;
+                }
+                bobj.Value = Convert.ToString(dsemp.Tables[0].Rows[e]["id"]); 
+                bobj.Text = Convert.ToString(dsemp.Tables[0].Rows[e]["EmployeeName"]);
+                
+                getemployees.Add(bobj);
+
+            };
+
+
+
+            List<SelectListItem> mySkills = new List<SelectListItem>()
+            {
+            };
+            ViewBag.MySkills = getemployees;
+
             return View(eobj);
         }
 
@@ -407,7 +419,7 @@ namespace CRUD.Controllers
                 cmd.ExecuteNonQuery();
                 con.Close();
                 //cmd.ExecuteScalar();         
-                ViewBag.Message =  "Branch Updated";
+                ViewBag.Message = "Branch Updated";
                 return RedirectToAction("Index");
             }
             catch

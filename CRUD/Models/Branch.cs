@@ -26,8 +26,8 @@ namespace CRUD.Models
 
         public string br_city { get; set; }
         public string br_mngr { get; set; }
+        public string br_mngrname { get; set; }
 
-        
         public string permitno { get; set; }
         
         public DateTime DateOpened { get; set; }
