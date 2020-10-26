@@ -1,0 +1,75 @@
+﻿@model CRUD.Models.Employee
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Employee</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.Raw("First Name")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+    
+            <dt>
+                @Html.Raw("Middle Name")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.MiddleName)
+            </dd>
+    
+            <dt>
+                @Html.Raw("Last Name")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+    
+            <dt>
+                @Html.Raw("Date Hired")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DateHired).ToString()
+            </dd>
+    
+            <dt>
+                @Html.Raw("Employee Image")
+
+            </dt>
+    
+            <dd>
+            <img src="@Html.DisplayFor(model => model.EmpImage)"/>
+            </dd>
+    
+            <dt>
+                @Html.Raw("Branch Name Assigned")
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Br_Assigned)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

@@ -1,0 +1,111 @@
+﻿@model CRUD.Models.Branch
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Branch</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.Raw("Branch code")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BR_Code)
+            </dd>
+
+            <dt>
+                @Html.Raw("Branch Name")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.br_name)
+            </dd>
+
+            <dt>
+                @Html.Raw("Branch Address")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.br_address)
+            </dd>
+
+            <dt>
+                @Html.Raw("Branch brgy")
+
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.br_brgy)
+            </dd>
+
+            <dt>
+                @Html.Raw("Branch City")
+
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.br_city)
+            </dd>
+
+            <dt>
+                @Html.Raw("Branch Manager")
+
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.br_mngr)
+            </dd>
+
+            <dt>
+                @Html.Raw("Branch permit no.")
+
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.permitno)
+            </dd>
+
+            <dt>
+                @Html.Raw("Branch date opened")
+
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateOpened)
+            </dd>
+
+            <dt>
+                @Html.Raw("Is active")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.isActive)
+            </dd>
+
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

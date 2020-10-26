@@ -1,0 +1,95 @@
+﻿@model IEnumerable<CRUD.Models.Branch>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Branch List</title>
+</head>
+<body>
+    <a href="Employee">Employee</a><br />
+    <a href="Home">Home</a><br />
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.Raw("Branch Code")
+
+            </th>
+            <th>
+                @Html.Raw("Branch Name")
+            </th>
+            <th>
+                @Html.Raw("Branch Address")
+            </th>
+            <th>
+                @Html.Raw("Branch Brgy")
+            </th>
+            <th>
+                @Html.Raw("Branch City")
+            </th>
+            <th>
+                @Html.Raw("Branch Manager")
+            </th>
+            <th>
+                @Html.Raw("Permit No.")
+            </th>
+            <th>
+                @Html.Raw("Branch Datae Opened")
+            </th>
+            <th>
+                @Html.Raw("Branch Active?")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BR_Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.br_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.br_address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.br_brgy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.br_city)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.br_mngr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.permitno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOpened)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isActive)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
