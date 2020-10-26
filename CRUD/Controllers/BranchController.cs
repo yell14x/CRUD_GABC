@@ -368,10 +368,7 @@ namespace CRUD.Controllers
             {
                 SelectListItem bobj = new SelectListItem();
 
-                if (id_mngr == Convert.ToString(dsemp.Tables[0].Rows[e]["id"]))
-                {
-                    bobj.Selected = true;
-                }
+                
                 bobj.Value = Convert.ToString(dsemp.Tables[0].Rows[e]["id"]); 
                 bobj.Text = Convert.ToString(dsemp.Tables[0].Rows[e]["EmployeeName"]);
                 
@@ -384,8 +381,8 @@ namespace CRUD.Controllers
             List<SelectListItem> mySkills = new List<SelectListItem>()
             {
             };
-            ViewBag.MySkills = getemployees;
 
+            ViewBag.MySkills = getemployees;
             return View(eobj);
         }
 
